@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#exec ~/.local/bin/monitor-setup.sh &
+
+# udiskie
+#exec udiskie &
+# wallpaper
+#exec nitrogen --restore &
+
+# Start GNOME Keyring
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+# export gnome-keyring variables
+#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+
+# notification daemon
+#exec /usr/lib/notification-daemon-1.0/notification-daemon &
+
+# blueman applet
+#exec blueman-applet &
+
+# pasystray
+exec pasystray &
+
+# terminals
+exec termite --class="term-system" &
+exec termite --class="term-kapma" &
+
+# xscreensaver
+#/usr/bin/gnome-screensaver &
+
+# scudcloud
+#exec scudcloud &
+
+# megatools
+#if [ ! -d "${HOME}/var/mega" ]; then
+#    mkdir -p ${HOME}/var/mega
+#fi
+#if which megafs 2>&1 >/dev/null; then
+#    if [ ! "$(pidof megafs)"  ]; then
+#        exec megafs $HOME/var/mega &
+#    fi
+#fi
+
+#compton
+#exec compton -b
+
+nm-applet &
+

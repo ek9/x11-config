@@ -1,0 +1,65 @@
+#! /bin/sh
+
+# INITIALIZE DESKTOPS
+#CHK_VGA=$(xrandr |grep $VGA | awk ' { print $2 } ')
+#CHK_HDMI=$(xrandr |grep $HDMI | awk ' { print $2 } ')
+#MONITORS
+bspc desktop ^1 -n 1
+bspc monitor -a 2 3 4 5 6 7 8 9
+#bspc monitor LVDS1 -d 1 2 3 4 5 6 7 8 9
+bspc monitor HDMI1 -d 0
+bspc monitor VGA1 -d 0
+#bspc monitor VGA1 -d 5 6 7 8
+
+bspc config top_padding 14
+bspc config -m LVDS1 top_padding_14
+bspc config -m HDMI1 top_padding_14
+bspc config -m VGA1 top_padding_14
+
+### RULES
+# Global
+bspc rule -a URxvtQuake sticky=on floating=on
+
+# Desktop 1 - main1
+# main terminal
+bspc rule -a term-system desktop=^1 follow=off
+
+# Desktop 2 - main2
+# firefox
+bspc rule -a Firefox desktop=^2 follow=on
+
+# Desktop 3 - dev1
+# dev (kapma) terminal
+bspc rule -a term-dev-kapma desktop=^3 follow=off
+
+# Desktop 4 - dev2
+
+# Desktop 5 - media1
+# gimp
+bspc rule -a Gimp desktop=^5 floating=off follow=on
+# steam
+bspc rule -a Steam desktop=^5 floating=off follow=on
+
+# Desktop 6 - games
+# dota2
+bspc rule -a dota_linux desktop=^6 floating=on follow=on
+
+# Desktop 7 - system
+# thunar
+bspc rule -a Thunar desktop=^7 follow=on
+
+# Desktop 8 - GTD
+
+# Desktop 9 - media2
+
+# Desktop 0 (10)
+# keepass
+bspc rule -a KeePass2 desktop=^9 follow=on
+
+bspc config persistent_monitors false
+bspc config remove_disabled_monitors true
+bspc config split_ratio         0.5
+bspc config border_width        0
+bspc config window_gap          0
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
