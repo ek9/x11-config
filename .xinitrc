@@ -13,5 +13,4 @@ fi
 [ -f ~/.xprofile ] && source ~/.xprofile
 
 exec sxhkd &
-exec fbpanel &
 exec bspwm
