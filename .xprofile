@@ -1,6 +1,6 @@
 #!/bin/bash
-exec setxkbmap -model pc104 -layout us,lt -option grp:alt_shift_toggle
-exec ~/.local/bin/monitor-setup.sh
+exec setxkbmap -model pc104 -layout us,lt -option grp:alt_shift_toggle &
+#exec ~/.local/bin/monitor-setup.sh &
 
 exec fbpanel &
 exec nm-applet &
