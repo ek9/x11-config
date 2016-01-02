@@ -1,5 +1,6 @@
 [var/cache/mr/awesome-terminal-fonts.git]
 checkout = git clone 'https://github.com/gabrielelana/awesome-terminal-fonts' 'awesome-terminal-fonts.git' && 
-    ln -sf awesome-terminal-fonts.git/fonts/* ~/.local/share/fonts/ &&
+    cd ~/.local/share/fonts &&
+    ln -sf ../../../var/cache/mr/awesome-terminal-fonts.git/fonts/* . &&
     fc-cache -vf
 

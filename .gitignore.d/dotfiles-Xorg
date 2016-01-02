@@ -38,9 +38,7 @@
 !/.local
 !/.local/share
 !/.local/share/fonts
-!/.local/share/fonts/fontawesome-regular.ttf
-!/.local/share/fonts/octicons-regular.ttf
-!/.local/share/fonts/pomicons-regular.ttf
+!/.local/share/fonts/.gitkeep
 !/.xinitrc
 !/.xprofile
 !/.Xresources
