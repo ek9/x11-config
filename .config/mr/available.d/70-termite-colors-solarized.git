@@ -1,2 +1,2 @@
-[.config/termite/termite-colors-solarized.git]
+[var/cache/mr/termite-colors-solarized.git]
 checkout = git clone 'git://github.com/alpha-omega/termite-colors-solarized.git' 'termite-colors-solarized.git'
