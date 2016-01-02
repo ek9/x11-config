@@ -1,6 +1,9 @@
 #!/bin/bash
+exec setxkbmap -model pc104 -layout us,lt -option grp:alt_shift_toggle
+exec ~/.local/bin/monitor-setup.sh
 
-#exec ~/.local/bin/monitor-setup.sh &
+exec fbpanel &
+exec nm-applet &
 
 # udiskie
 #exec udiskie &
@@ -19,14 +22,11 @@
 #exec blueman-applet &
 
 # pasystray
-exec pasystray &
+#exec pasystray &
 
 # terminals
-exec termite --class="term-system" &
-exec termite --class="term-kapma" &
-
-# xscreensaver
-#/usr/bin/gnome-screensaver &
+#exec termite --class="term-system" &
+#exec termite --class="term-kapma" &
 
 # scudcloud
 #exec scudcloud &
@@ -44,5 +44,4 @@ exec termite --class="term-kapma" &
 #compton
 #exec compton -b
 
-nm-applet &
 
