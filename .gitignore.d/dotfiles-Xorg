@@ -38,6 +38,8 @@
 !/.config/termite
 !/.config/termite/config
 !/.local
+!/.local/bin
+!/.local/bin/monitor-setup.sh
 !/.local/share
 !/.local/share/fonts
 !/.local/share/fonts/.gitkeep
