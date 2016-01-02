@@ -40,9 +40,12 @@
 !/.local
 !/.local/bin
 !/.local/bin/monitor-setup.sh
+!/.local/bin/pdf-repair.sh
 !/.local/share
 !/.local/share/fonts
 !/.local/share/fonts/.gitkeep
+!/.local/share/templates
+!/.local/share/templates/.gitkeep
 !/.xinitrc
 !/.xprofile
 !/.Xresources

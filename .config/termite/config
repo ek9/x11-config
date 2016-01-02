@@ -1,6 +1,6 @@
 [options]
 font = SourceCodePro 10
-
+scrollback_lines = 0
 [colors]
 foreground = #839496
 foreground_bold = #eee8d5
