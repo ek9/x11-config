@@ -46,6 +46,7 @@
 !/.local/share/fonts/.gitkeep
 !/.local/share/templates
 !/.local/share/templates/.gitkeep
+!/.local/share/x230.icm
 !/.xinitrc
 !/.xprofile
 !/.Xresources

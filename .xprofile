@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ -f ~/.local/share/x230.icm ]; then
+    exec dispwin -d 1 ~/.local/share/x230.icm
+fi
+
 exec setxkbmap -model pc104 -layout us,lt -option grp:alt_shift_toggle &
 #exec ~/.local/bin/monitor-setup.sh &
 
