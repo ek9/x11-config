@@ -1,23 +1,25 @@
 #!/bin/bash
+# ~/.xprofile - start your Xorg apps here
+
 if [ -f ~/.local/share/x230.icm ]; then
-    exec dispwin -d 1 ~/.local/share/x230.icm
+    exec dispwin -d 1 ~/.local/share/x230.icm &
 fi
 
-exec setxkbmap -model pc104 -layout us,lt -option grp:alt_shift_toggle &
 #exec ~/.local/bin/monitor-setup.sh &
+exec nitrogen --restore &
 
+exec setxkbmap -model pc104 -layout us,lt -option grp:alt_shift_toggle &
 exec fbpanel &
+
 exec nm-applet &
 
 # udiskie
 #exec udiskie &
-# wallpaper
-#exec nitrogen --restore &
 
 # Start GNOME Keyring
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
 # export gnome-keyring variables
-#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
 
 # notification daemon
 #exec /usr/lib/notification-daemon-1.0/notification-daemon &
