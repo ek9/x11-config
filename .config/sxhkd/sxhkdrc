@@ -1,26 +1,52 @@
 ## sxhkdrc
 ## Key bindings (hotkeys) for bspwm
-# quit / exit
-super + shift + Escape
-    bspc quit
 
-# toggle last window/desktop
-super + {Tab,grave}
-    bspc {window,monitor} -f last
-
-# toggle last monitor
-super + alt + Tab
-    bspc monitor -f last
-
-## sxhkd general
+### general
+###########
 
 # sxhkd reload config
 super + Escape
     pkill -USR1 -x sxhkd
 
-#super + alt + Escape
+# dmenu run
+super + r
+    dmenu_run
 
-## bspwm - window control
+# terminal
+super + Return
+    termite
+
+# open a "scratchpad" terminal (quake-style terminal)
+super + F1
+  ~/.local/bin/quaketermite.sh
+
+# lock screen
+super + shift + l
+  sxlock
+
+# quit / exit
+super + shift + Escape
+    bspc quit
+
+### bspwm - desktop/window control
+#########
+# focus specific desktop / move window to specific desktop
+super + {_,shift + }{1-9}
+    bspc {desktop -f,window -d} desk{1-9}
+
+# toggle last desktop/monitor
+super + {Tab,grave}
+    bspc {desktop,monitor} -f last
+
+
+# select main (biggest) window
+super + m
+    bspc window -s biggest
+
+# swap current windows/desktop with last
+super + shift + {Tab,grave}
+    bspc {window,desktop} -s last
+
 
 # close window
 super + w
@@ -30,17 +56,10 @@ super + w
 super + shift + w
     bspc window -k
 
+### bspwm - window modes
 # toggle floating, fullscreen
 super + {s,f}
     bspc window -t {floating,fullscreen}
-
-# swap current windows with last
-super + shift + Tab
-    bspc window -s last
-
-# select main (biggest) window
-super + m
-    bspc window -s biggest
 
 # focus/swap windows
 super + {_,alt + }{h,j,k,l}
@@ -54,8 +73,6 @@ super + {_,shift + }c
 super + {_,shift +}d
     bspc desktop -C {forward,backward}
 
-## bspwm - desktop control
-
 # cycle monocle/tiled mode
 super + t
     bspc desktop -l next
@@ -64,25 +81,22 @@ super + t
 super + b
     bspc desktop -B
 
+# select monitors
 super + bracket{left,right}
-    bspc desktop -f {prev,next}
+    bspc monitor -f {prev,next}
 
+### Window Splitting
+####################
+
+# preselect spliting area of current window for new window
 super + ctrl + {h,j,k,l}
     bspc window -p {left,down,up,right}
     bspc {window -p cancel,desktop -c}
 
-super + alt + {h,j,k,l}
-    bspc window -e {left,down,up,right} push
+# move current window to specific desktop
 
-super + alt + shift + {h,j,k,l}
-    bspc window -e {right,up,down,left} pull
-
-super + ctrl + {1-9}
-    bspc window -r 0.{1-9}
-
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f,window -d} {1-9,0}
-
+### Mouse
+#########
 ~button1
     bspc pointer -g focus
 
@@ -92,23 +106,4 @@ super + button{1-3}
 super + !button{1-3}
     bspc pointer -t %i %i
 
-## program hotkeys
 
-# terminal
-super + Return
-#    urxvt
-    termite
-#    urxvt -e tmux attach
-
-# run
-super + r
-    dmenu_run
-
-# open a "scratchpad" terminal (quake-style, in this case, on a 1366x768 display)
-super + F1
-  xdotool search --onlyvisible --classname URxvtQuake windowunmap \
-    || xdotool search --classname URxvtQuake windowmap \
-    || urxvt -name URxvtQuake -geometry 1360x20+0+20 -tr
-
-super + shift + l
-  sxlock

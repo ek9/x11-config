@@ -13,4 +13,4 @@ fi
 [ -f ~/.xprofile ] && source ~/.xprofile
 
 exec sxhkd &
-exec bspwm
+exec bspwm > ~/.local/share/xorg/bspwm.log 2>&1

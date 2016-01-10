@@ -1,25 +1,35 @@
 #!/bin/bash
-# ~/.xprofile - start your Xorg apps here
+# ~/.xprofile - set X environment variables & start Xorg apps
 
-if [ -f ~/.local/share/x230.icm ]; then
-    exec dispwin -d 1 ~/.local/share/x230.icm &
+# gtk2 config file path
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# gtk themes in qt apps
+export QT_STYLE_OVERRIDE=gtk
+# force Xft on old GTK and QT applications
+export GDK_USE_XFT=1
+export QT_XFT=true
+# wine force 32bit mode
+export WINEARCH=win32
+# Dota 2 font rendering fix
+export MESA_GL_VERSION_OVERRIDE=2.1
+
+# Export session for gnome-keyring (TODO still needed?)
+export DESKTOP_SESION=gnome
+
+# Load monitor.icm if present (requires agryllcms)
+if [ -f ~/.local/share/monitor.icm ] && [ -x $(command -v dispwin) ]; then
+    exec dispwin -d 1 ~/.local/share/monitor.icm &
 fi
 
-#exec ~/.local/bin/monitor-setup.sh &
-exec nitrogen --restore &
-
+# Set xkbmap
 exec setxkbmap -model pc104 -layout us,lt -option grp:alt_shift_toggle &
-exec fbpanel &
 
+# Start apps
+exec fbpanel &
 exec nm-applet &
 
 # udiskie
 #exec udiskie &
-
-# Start GNOME Keyring
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
-# export gnome-keyring variables
-#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
 
 # notification daemon
 #exec /usr/lib/notification-daemon-1.0/notification-daemon &
@@ -49,5 +59,6 @@ exec nm-applet &
 
 #compton
 #exec compton -b
+
 
 

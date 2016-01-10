@@ -1,5 +1,6 @@
 *
 !/.config
+!/.config/Trolltech.conf
 !/.config/user-dirs.*
 !/.config/bash
 !/.config/bash/config.d
@@ -19,6 +20,10 @@
 !/.config/bspwm/bspwmrc
 !/.config/fontconfig
 !/.config/fontconfig/fonts.conf
+!/.config/gtk-2.0
+!/.config/gtk-2.0/gtkfilechooser.ini
+!/.config/gtk-3.0
+!/.config/gtk-3.0/settings.ini
 !/.config/mr
 !/.config/mr/available.d
 !/.config/mr/available.d/5*
@@ -47,6 +52,10 @@
 !/.local/share/templates
 !/.local/share/templates/.gitkeep
 !/.local/share/x230.icm
+!/.local/share/monitor.icm
+!/.gtkrc-2.0
+!/.themes
+!/.themes/*
 !/.xinitrc
 !/.xprofile
 !/.Xresources

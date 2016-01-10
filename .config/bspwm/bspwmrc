@@ -1,24 +1,49 @@
 #! /bin/sh
 
-# INITIALIZE DESKTOPS
-#CHK_VGA=$(xrandr |grep $VGA | awk ' { print $2 } ')
-#CHK_HDMI=$(xrandr |grep $HDMI | awk ' { print $2 } ')
-#MONITORS
-bspc desktop ^1 -n 1
-bspc monitor -a 2 3 4 5 6 7 8 9
-#bspc monitor LVDS1 -d 1 2 3 4 5 6 7 8 9
-bspc monitor HDMI1 -d 0
-bspc monitor VGA1 -d 0
-#bspc monitor VGA1 -d 5 6 7 8
+## config
+# maximum number of desktops to keep
+MAX_DESKTOPS=9
+# desktops per monitor
+DESKTOPS_PER_MONITOR=3
+# on which monitor to put remaining desktops (last/first)
+REMAINING_DESKTOPS=last
+# panel size
+PANEL_SIZE=15
+# file to run for setting up moniotrs
+MONSETUP="$HOME/.config/bspwm/monitors_setup.sh"
+[[ -f "$MONSETUP" ]] && . $MONSETUP && MONSETUP=true
 
-bspc config top_padding 14
-bspc config -m LVDS1 top_padding_14
-bspc config -m HDMI1 top_padding_14
-bspc config -m VGA1 top_padding_14
+
+### Configuration
+: ${PANEL_SIZE:=14}
+: ${MIN_DESKTOPS:=9}
+
+bspc config top_padding $PANEL_SIZE
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+bspc config merge_overlapping_monitors false
+bspc config split_ratio         0.5
+bspc config border_width        0
+bspc config window_gap          0.1
+bspc config borderless_monocle  false
+bspc config gapless_monocle     false
+
+### Desktops
+### Make sure we always have $MIN_DESKTOPS desktops
+bspc desktop -n desk1
+BS_DESKTOPS=$(bspc query -D|wc -l)
+if [[ $BS_DESKTOPS < $MIN_DESKTOPS ]]; then
+    for ((i=$BS_DESKTOPS; i<=$MIN_DESKTOPS; i++)) {
+        bspc monitor ^1 -a desk$i
+    }
+fi
+
+## Monitor setup
+[[ true == "$MONSETUP" ]] && monitors_setup
 
 ### RULES
 # Global
-bspc rule -a URxvtQuake sticky=on floating=on
+bspc rule -a QuakeTermite sticky=on floating=on
 
 # Desktop 1 - main1
 # main terminal
@@ -56,10 +81,4 @@ bspc rule -a Thunar desktop=^7 follow=on
 # keepass
 bspc rule -a KeePass2 desktop=^9 follow=on
 
-bspc config persistent_monitors false
-bspc config remove_disabled_monitors true
-bspc config split_ratio         0.5
-bspc config border_width        0
-bspc config window_gap          0
-bspc config borderless_monocle  true
-bspc config gapless_monocle     true
+
