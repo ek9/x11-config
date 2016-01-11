@@ -44,8 +44,10 @@
 !/.config/termite/config
 !/.local
 !/.local/bin
-!/.local/bin/monitor-setup.sh
+!/.local/bin/monitors_init.sh
 !/.local/bin/pdf-repair.sh
+!/.local/bin/quaketermite.sh
+!/.local/bin/xvim
 !/.local/share
 !/.local/share/fonts
 !/.local/share/fonts/.gitkeep
