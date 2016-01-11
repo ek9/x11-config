@@ -1,5 +1,0 @@
-[var/cache/mr/Xresources-solarized.git]
-checkout = git clone 'https://github.com/solarized/xresources' 'Xresources-solarized.git' &&
-    cd ~/.config/X11 &&
-    ln -sf ../../var/cache/mr/Xresources-solarized.git/Xresources.dark Xresources
-

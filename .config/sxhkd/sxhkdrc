@@ -13,11 +13,11 @@ super + r
     dmenu_run
 
 # terminal
-super + Return
-    termite
+#super + Return
+#    termite
 
 # open a "scratchpad" terminal (quake-style terminal)
-super + F1
+super + Return
   ~/.local/bin/quaketermite.sh
 
 # lock screen

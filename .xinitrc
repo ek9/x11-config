@@ -8,9 +8,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-[ -f ~/.Xresources ] && xrdb ~/.Xresources
 [ -f /etc/xprofile ] && source /etc/xprofile
 [ -f ~/.xprofile ] && source ~/.xprofile
+[ -f ~/.config/X11/Xresources ] && xrdb ~/.config/X11/Xresources
 
 exec sxhkd &
 exec bspwm > ~/.local/share/xorg/bspwm.log 2>&1

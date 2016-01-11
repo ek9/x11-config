@@ -49,6 +49,7 @@
 !/.local/share
 !/.local/share/fonts
 !/.local/share/fonts/.gitkeep
+!/.local/share/fonts/SourceCodePro+Powerline+Awesome+Regular.ttf
 !/.local/share/templates
 !/.local/share/templates/.gitkeep
 !/.local/share/x230.icm

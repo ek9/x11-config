@@ -2,19 +2,23 @@
 # ~/.xprofile - set X environment variables & start Xorg apps
 
 # gtk2 config file path
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/.gtkrc-2.0"
+
 # gtk themes in qt apps
 export QT_STYLE_OVERRIDE=gtk
+
 # force Xft on old GTK and QT applications
 export GDK_USE_XFT=1
 export QT_XFT=true
-# wine force 32bit mode
-export WINEARCH=win32
+# Java font rendering
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd_hrgb'
 # Dota 2 font rendering fix
 export MESA_GL_VERSION_OVERRIDE=2.1
 
 # Export session for gnome-keyring (TODO still needed?)
 export DESKTOP_SESION=gnome
+
+[[ -x $(command -v firefox) ]] && export BROWSER=firefox
 
 # Load monitor.icm if present (requires agryllcms)
 if [ -f ~/.local/share/monitor.icm ] && [ -x $(command -v dispwin) ]; then
