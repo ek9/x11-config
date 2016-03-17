@@ -12,5 +12,5 @@ fi
 [ -f ~/.xprofile ] && source ~/.xprofile
 [ -f ~/.config/X11/Xresources ] && xrdb ~/.config/X11/Xresources
 
-exec sxhkd &
-exec bspwm > ~/.local/share/xorg/bspwm.log 2>&1
+#exec i3
+exec i3 -V >> /dev/null 2>&1
