@@ -1,0 +1,10 @@
+## ek9/x11-config - https://github.com/ek9/x11-config
+## x11-config.git
+## Setup ek9/x11-config and dependant repositories
+
+### DEPENDENCIES - cloned via git
+
+### MAIN REPOSITORY - cloned via vcsh
+# x11-config
+[$HOME/.config/vcsh/repo.d/x11-config.git]
+checkout = vcsh clone https://github.com/ek9/x11-config
