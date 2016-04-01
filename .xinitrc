@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+## ek9/x11-config - https://github.com/ek9/x11-config
+## .xinitrc
+## This file sets up X11 environment when initializing via xinit/startx
 
 # run files from xinitrc.d directory
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -12,5 +15,11 @@ fi
 [ -f ~/.xprofile ] && source ~/.xprofile
 [ -f ~/.config/X11/Xresources ] && xrdb ~/.config/X11/Xresources
 
-#exec i3
-exec i3 -V >> /dev/null 2>&1
+# run files from $HOME/X11/xinitrc.d directory
+if [ -d "$HOME/X11/xinitrc.d" ]; then
+  for f in $HOME/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
