@@ -3,6 +3,12 @@
 ## Setup ek9/x11-config and dependant repositories
 
 ### DEPENDENCIES - cloned via git
+# xresources-solarized
+[$HOME/.config/vcsh/repo.d/xresources]
+checkout = git clone https://github.com/solarized/xresources &&
+    mkdir ~/.config/X11 &&
+    cd ~/.config/X11 &&
+    ln -sf ../vcsh/repo.d/xresources/Xresources.dark Xresources
 
 ### MAIN REPOSITORY - cloned via vcsh
 # x11-config
