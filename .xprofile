@@ -1,43 +1,13 @@
-#!/bin/bash
-# ~/.xprofile - set X environment variables & start Xorg apps
+#!/usr/bin/env bash
+## ek9/x11-config - https://github.com/ek9/x11-config
+## .xprofile
+## This file sets up X11 profile. It is loaded by .xinitrc during X11 init
 
-# gtk2 config file path
-export GTK2_RC_FILES="$HOME/.config/gtkrc-2.0"
-
-# gtk themes in qt apps
-export QT_STYLE_OVERRIDE=gtk
-
-# force Xft on old GTK and QT applications
-export GDK_USE_XFT=1
-export QT_XFT=true
-# Java font rendering
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd_hrgb'
-# Dota 2 font rendering fix
-#export MESA_GL_VERSION_OVERRIDE=2.1
-
-# Export session for gnome-keyring (TODO still needed?)
-export DESKTOP_SESION=gnome
-
-[[ -x $(command -v firefox) ]] && export BROWSER=firefox
-
-# Load monitor.icm if present (requires agryllcms)
-if [ -f ~/.local/share/monitor.icm ] && [ -x $(command -v dispwin) ]; then
-    dispwin -d 1 ~/.local/share/monitor.icm &
+# load profile files from $HOME/.config/X11/profile.d
+if [[ -d "$HOME/.config/X11/profile.d/" ]]; then
+	for profile in $HOME/.config/X11/profile.d/*.sh; do
+		test -r "$profile" && . "$profile"
+	done
+	unset profile
 fi
 
-# Set xkbmap
-setxkbmap -model pc104 -layout us,lt -option grp:shifts_toggle &
-xset s off -dpms
-xset m 0 0
-
-stalonetray &
-compton -b &
-# Notification
-dunst &
-# Mounting
-udiskie --tray &
-# Start apps
-nm-applet &
-~/.local/bin/monitor-hotplug.sh &
-pasystray &
-xautolock -time 15 -locker slock -notify 30 -notifier "notify-send -u critical -t 10000 -- 'Locking screen in 30'" &
