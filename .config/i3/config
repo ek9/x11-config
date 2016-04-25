@@ -1,0 +1,198 @@
+# i3 config file (v4)
+# author: ek9 <dev@ek9.co>
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Config
+# ------
+
+# set $mod to Win key
+set $mod Mod4
+
+# font for window titles
+font pango:SourceCodePro 9
+
+# Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# hide window borders near edges of display
+hide_edge_borders both
+
+# make mouse not follow focused windows
+focus_follows_mouse no
+
+# wrap focus (requires to use focus parent hotkey to focus parent)
+force_focus_wrapping no
+
+# switch in between the workstapce by continuously activating the same workspace
+workspace_auto_back_and_forth yes
+
+# set default workstapce layout to stacking
+workspace_layout stacking
+
+# floating windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="prefwindow"] floating enable
+for_window [class="Qt4-ssh-askpass"] floating enable
+for_window [class="Firefox" instance="SessionManager"] floating enable
+for_window [class="Termite"] border pixel 0
+for_window [title="File Operation Progress" class="Thunar"] floating enable
+for_window [class="(?i)lxappearance"] floating enable
+
+# workstpaces
+#assign [class="Firefox"] 2
+# Start urxvt -name irssi (use xprop | grep WM_CLASS)
+# assign [class="^URxvt$" instance="^irssi$"] 3
+
+# Keybinds
+# --------
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+# kill/close focused window
+bindsym $mod+Shift+x kill
+# lock screen
+bindsym $mod+Escape exec slock
+# start dmenu (a program launcher)
+bindsym $mod+r exec dmenu_run
+# lock screen
+bindsym Pause exec slock
+# hibernate
+bindsym $mod+Pause exec sudo systemctl hibernate
+
+# screenshot all displayes
+bindsym Print exec scrot
+# screenshot selected area
+bindsym Control+Print exec scrot -s
+# screenshot active window
+bindsym $mod+Print exec scrot -u
+
+# reload the configuration file
+bindsym $mod+Shift+n reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# enter fullscreen mode for the focused container
+bindsym $mod+z fullscreen toggle
+# toggle split layout (horizontal/vertical)
+bindsym $mod+e layout toggle split
+# tabbed layout
+bindsym $mod+w layout tabbed
+# stacking layout
+bindsym $mod+Shift+w layout stacking
+
+# split in vertical orientation
+bindsym $mod+s split v
+# split in horizontal orientation
+bindsym $mod+v split h
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+#bindsym $mod+- workspace 11
+#bindsym $mod+= workspace 12
+
+# switch to last active workspace
+bindsym $mod+grave workspace back_and_forth
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+#bindsym $mod+Shift+- move container to workspace 9
+#bindsym $mod+Shift+= move container to workspace 10
+
+# switch workspace to current output
+bindsym $mod+Ctrl+1 exec i3-switch-workspace.py 1
+bindsym $mod+Ctrl+2 exec i3-switch-workspace.py 2
+bindsym $mod+Ctrl+3 exec i3-switch-workspace.py 3
+bindsym $mod+Ctrl+4 exec i3-switch-workspace.py 4
+bindsym $mod+Ctrl+5 exec i3-switch-workspace.py 5
+bindsym $mod+Ctrl+6 exec i3-switch-workspace.py 6
+bindsym $mod+Ctrl+7 exec i3-switch-workspace.py 7
+bindsym $mod+Ctrl+8 exec i3-switch-workspace.py 8
+bindsym $mod+Ctrl+9 exec i3-switch-workspace.py 9
+bindsym $mod+Ctrl+0 exec i3-switch-workspace.py 10
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+d focus child
+
+# resize focused window
+bindsym $mod+Left resize shrink width 3 px or 3 ppt
+bindsym $mod+Down resize grow height 3 px or 3 ppt
+bindsym $mod+Up resize shrink height 3 px or 3 ppt
+bindsym $mod+Right resize grow width 3 px or 3 ppt
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec ~/.local/bin/volumectl.sh +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec ~/.local/bin/volumectl.sh -5% #decrease sound volume
+bindsym XF86AudioMute exec ~/.local/bin/volumectl.sh toggle-vol-mute # toggle mute sound
+bindsym XF86AudioStop exec ~/.local/bin/volumectl.sh toggle-vol-mute # toggle mute sound
+bindsym XF86AudioMicMute exec ~/.local/bin/volumectl.sh toggle-mic-mute # toggle mute sound
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl.sh play-pause
+bindsym XF86AudioPause exec playerctl.sh play-pause
+#bindsym XF86AudioStop exec playerctl.sh pause
+bindsym XF86AudioNext exec playerctl.sh next
+bindsym XF86AudioPrev exec playerctl.sh previous
+
+# backlight
+bindsym XF86MonBrightnessUp exec brightnessctl.sh -inc 10
+bindsym XF86MonBrightnessDown exec brightnessctl.sh -dec 10
+
+# Monitor hotplug
+bindsym Scroll_Lock exec monitor-hotplug.sh
+bindsym XF86Display exec monitor-hotplug.sh
+
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+#bindsym $mod+F1 exec --no-startup-id "i3-msg 'append_layout ~/.config/i3/layout-1.json'"
+#bindsym $mod+F2 exec --no-startup-id "i3-msg 'append_layout ~/.config/i3/layout-2.json'"
+#bindsym $mod+F3 exec --no-startup-id "i3-msg 'append_layout ~/.config/i3/layout-3.json'"
+#bindsym $mod+F4 exec --no-startup-id "i3-msg 'append_layout ~/.config/i3/layout-4.json'"
+#bindsym $mod+F5 exec --no-startup-id "i3-msg 'append_layout ~/.config/i3/layout-1.json'"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        #i3bar_command "pgrep powerline-bar && killall powerline-bar.py || /usr/lib/python3.5/site-packages/powerline/bindings/bar/powerline-bar.py --i3 | lemonbar.sh"
+}
