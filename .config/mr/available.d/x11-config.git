@@ -9,6 +9,14 @@ checkout = git clone https://github.com/solarized/xresources &&
     cd ~/.config/X11 &&
     ln -sf ../vcsh/repo.d/xresources/Xresources.dark Xresources
 
+# ek9/x11-scripts
+[$HOME/.config/vcsh/repo.d/x11-scripts]
+checkout = git clone https://github.com/ek9/x11-scripts &&
+    cd ~/.local/bin/ &&
+    ln -sf ~/.config/vcsh/repo.d/x11-scripts/* . &&
+    rm README.md &&
+    chmod +x ~/.local/bin/*
+
 ### MAIN REPOSITORY - cloned via vcsh
 # x11-config
 [$HOME/.config/vcsh/repo.d/x11-config.git]
