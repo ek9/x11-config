@@ -3,4 +3,4 @@
 ## 99-i3-xinit.sh
 ## starts i3 wm. Make sure to run this last
 
-exec i3 -V >> /dev/null 2>&1
+i3 -V >> "$HOME/.local/share/xorg/i3.log" 2>&1
