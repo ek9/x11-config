@@ -59,12 +59,11 @@ bindsym Pause exec slock
 # hibernate
 bindsym $mod+Pause exec sudo systemctl hibernate
 
-# screenshot all displayes
-bindsym Print exec scrot
+# screenshot all displays
+bindsym Ctrl+Print exec maim ~/inbox/screenshot/$(date +%s).png
+
 # screenshot selected area
-bindsym Control+Print exec scrot -s
-# screenshot active window
-bindsym $mod+Print exec scrot -u
+bindsym $mod+Print exec maim -s ~/inbox/screenshot/$(date +%s).png
 
 # reload the configuration file
 bindsym $mod+Shift+n reload
@@ -191,6 +190,7 @@ bindsym XF86Display exec monitor-hotplug.sh
 #bindsym $mod+F4 exec --no-startup-id "i3-msg 'append_layout ~/.config/i3/layout-4.json'"
 #bindsym $mod+F5 exec --no-startup-id "i3-msg 'append_layout ~/.config/i3/layout-1.json'"
 
+bindsym $mod+F5 exec ~/.config/X11/xinitrc.d/75-nitrogen.sh
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
