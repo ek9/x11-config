@@ -16,6 +16,8 @@ checkout = git clone https://github.com/ek9/x11-scripts &&
     ln -sf ~/.config/vcsh/repo.d/x11-scripts/* . &&
     rm README.md &&
     chmod +x ~/.local/bin/*
+    # remove dead symlinks
+    find -L ~/.local/share/wallpaper -name . -o -type d -prune -o -type l -exec rm {} +
 
 ### MAIN REPOSITORY - cloned via vcsh
 # x11-config
